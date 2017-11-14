@@ -4,26 +4,29 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <BorderPane layoutX="39.0" layoutY="42.0" prefHeight="326.0" prefWidth="529.0">
-         <top>
-            <TextField fx:id="textfield" promptText="Type a word you want to add to the list below:" BorderPane.alignment="CENTER" />
-         </top>
-         <bottom>
-            <Button fx:id="button" mnemonicParsing="false" onAction="#handleClick" prefHeight="55.0" prefWidth="121.0" text="SUBMIT" BorderPane.alignment="CENTER" />
-         </bottom>
-         <center>
-            <TableView fx:id="table" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="tekst" prefWidth="528.0" text="Tekst" />
-              </columns>
-            </TableView>
-         </center>
-      </BorderPane>
+      <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="napis" prefWidth="81.0" text="TEKST" />
+            <TableColumn fx:id="dlugosc" prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+      <TextField fx:id="textField" GridPane.columnIndex="1" />
+      <Button fx:id="button" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
-</AnchorPane>
+</GridPane>

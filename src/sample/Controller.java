@@ -1,35 +1,32 @@
 package sample;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class Controller {
 
-    @FXML
-    public TableView<String> table;
-
-    @FXML
-    public TableColumn tekst;
-
-    @FXML
-    TextField textfield;
+    public TableView<String> tableView;
+    public TextField textField;
 
 
-    public final ObservableList<String> data
-            = FXCollections.observableArrayList();
+    public void initialize() {
+        for (TableColumn<String, ?> column : tableView.getColumns()) {
+            if ("napis".equals(column.getId())) {
+                TableColumn<String, String> textColumn = (TableColumn<String, String>) column;
+                textColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue()));
+            } else if ("dlugosc".equals(column.getId())) {
+                TableColumn<String, String> lengthColumn = (TableColumn<String, String>) column;
+                lengthColumn.setCellValueFactory((param -> new SimpleStringProperty(String.valueOf(param.getValue().length()))));
+            }
+        }
+    }
 
-    @FXML
-    private void handleClick(ActionEvent event) {
-        data.add(textfield.getText());
-        table.setItems(data);
+    public void handleClick(ActionEvent actionEvent) {
+        tableView.getItems().add(textField.getText());
     }
 }
+
